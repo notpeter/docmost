@@ -1,5 +1,5 @@
-import { Extension } from "@tiptap/core";
-import { PluginKey } from "@tiptap/pm/state";
+import { Extension, Range } from "@tiptap/core";
+import { EditorState, PluginKey } from "@tiptap/pm/state";
 import Suggestion, { SuggestionOptions } from "@tiptap/suggestion";
 import getEmojiItems from "../components/emoji-menu/emoji-items";
 import renderEmojiItems from "../components/emoji-menu/render-emoji-items";
@@ -23,6 +23,7 @@ const Command = Extension.create({
           }
           return true;
         },
+        shouldShow: ({ transaction }) => transaction.docChanged,
       } as Partial<SuggestionOptions>,
     };
   },
